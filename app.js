@@ -1,5 +1,5 @@
 // Change this if your FastAPI service is hosted somewhere else.
-const API_URL = "http://127.0.0.1:8000/predict";
+const API_URL = "https://listing-lens.onrender.com";
 
 const form = document.querySelector("#prediction-form");
 const submitButton = document.querySelector("#submit-button");
