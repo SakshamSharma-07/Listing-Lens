@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Listing Lens provides professional room type predictions for NYC Airbnb listings." />
+    <title>Listing Lens · NYC Listing Intelligence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .result-panel.has-result .empty-state { height: auto; padding-top: 46px; justify-content: flex-start; }
+      .result-panel.has-result .empty-index { margin-bottom: 14px; }
+      .result-panel.has-result .empty-state h2 { font-size: 20px; }
+      .result-panel.has-result .empty-state p { margin: 9px 0 0; }
+      .result-panel.has-result .result-label { margin: 32px 0 10px; }
+      .brand { gap: 10px; }
+      .brand-mark {
+        position: relative; width: 32px; height: 32px; overflow: visible;
+        border: 1px solid rgba(112, 228, 221, .58); background: rgba(112, 228, 221, .06);
+        transition: transform .28s ease, background .28s ease, box-shadow .28s ease;
+      }
+      .brand-mark i:first-child {
+        position: absolute; width: 13px; height: 13px; left: 8px; top: 7px;
+        border: 2px solid var(--cyan); border-radius: 50%;
+        transition: border-color .28s ease;
+      }
+      .brand-mark i:last-child {
+        position: absolute; width: 8px; height: 2px; left: 19px; top: 21px;
+        background: var(--cyan); border-radius: 2px; transform: rotate(48deg);
+        transform-origin: left center; transition: transform .28s ease, background .28s ease;
+      }
+      .brand:hover .brand-mark { transform: translateY(-1px) rotate(-7deg); background: rgba(112, 228, 221, .14); box-shadow: 0 8px 22px rgba(112, 228, 221, .18); }
+      .brand:hover .brand-mark i:last-child { transform: rotate(62deg) scaleX(1.16); }
+      .brand-wordmark { font-size: 18px; letter-spacing: -.07em; }
+      .brand-wordmark em { font-style: normal; color: var(--cyan); }
+      .brand-mark { display:flex; align-items:center; justify-content:center; gap:1px; border:1px solid rgba(112,228,221,.42); background:linear-gradient(145deg,#1b2834,#10161f); box-shadow:inset 0 1px rgba(255,255,255,.06); transform:none; }
+      .brand-mark span { display:block; color:#edf7f7; font:700 14px/1 Manrope,sans-serif; letter-spacing:-.15em; transition:color .25s ease,transform .25s ease; }
+      .brand-mark span:last-child { color:var(--cyan); transform:translateY(2px); }
+      .brand:hover .brand-mark { transform:translateY(-1px); background:linear-gradient(145deg,#213847,#111a24); box-shadow:0 8px 22px rgba(112,228,221,.14),inset 0 1px rgba(255,255,255,.08); }
+      .brand:hover .brand-mark span:first-child { transform:translateY(-1px); }
+      .brand:hover .brand-mark span:last-child { transform:translateY(1px); }
+    </style>
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Listing Lens home">
+        <span class="brand-mark" aria-hidden="true"><span>L</span><span>L</span></span>
+        <span class="brand-wordmark">Listing <em>Lens</em></span>
+      </a>
+      <div class="header-status"><span class="status-dot"></span>NYC model online</div>
+    </header>
+
+    <main id="top" class="shell">
+      <section class="intro">
+        <div class="eyebrow"><span></span> Listing intelligence</div>
+        <h1>Know the room type<br /><em>before you list.</em></h1>
+        <p>Complete the listing details below to receive a data-informed classification tailored to the property.</p>
+      </section>
+
+      <section class="workspace" aria-label="Room type prediction workspace">
+        <form id="prediction-form" novalidate>
+          <div class="form-heading"><div><p class="section-kicker">Listing details</p><h2>Tell us about the stay</h2></div><span class="required-note">* Required</span></div>
+
+          <div class="form-grid">
+            <label class="field"><span>Borough <b>*</b></span><select id="neighbourhood_group" required><option value="">Select borough</option><option>Manhattan</option><option>Brooklyn</option><option>Queens</option><option>Bronx</option><option>Staten Island</option></select></label>
+            <label class="field"><span>Neighbourhood <b>*</b></span><input id="neighbourhood" type="text" placeholder="e.g. Harlem" required /></label>
+            <label class="field"><span>Nightly price (USD) <b>*</b></span><div class="input-prefix"><span>$</span><input id="price" type="number" min="1" step="1" placeholder="120" required /></div></label>
+            <label class="field"><span>Minimum nights <b>*</b></span><input id="minimum_nights" type="number" min="1" max="365" step="1" placeholder="2" required /></label>
+            <label class="field"><span>Latitude <b>*</b></span><input id="latitude" type="number" min="-90" max="90" step="any" placeholder="40.811" required /></label>
+            <label class="field"><span>Longitude <b>*</b></span><input id="longitude" type="number" min="-90" max="90" step="any" placeholder="-73.946" required /></label>
+            <label class="field"><span>Host listing count <b>*</b></span><input id="calculated_host_listings_count" type="number" min="0" step="1" placeholder="1" required /></label>
+            <label class="field"><span>Available days (year) <b>*</b></span><input id="availability_365" type="number" min="0" max="365" step="1" placeholder="180" required /></label>
+          </div>
+
+          <div class="optional-panel">
+            <div><p>Optional signals</p><span>For a new listing or when unknown, leave these at zero.</span></div>
+            <div class="compact-fields">
+              <label class="field"><span>Total reviews</span><input id="number_of_reviews" type="number" min="0" step="1" value="0" /></label>
+              <label class="field"><span>Reviews / month</span><input id="reviews_per_month" type="number" min="0" step="0.1" value="0" /></label>
+            </div>
+          </div>
+          <p id="form-error" class="form-error" role="alert"></p>
+          <button id="submit-button" class="predict-button" type="submit"><span>Generate prediction</span><span class="button-arrow">→</span></button>
+        </form>
+
+        <aside class="result-panel" aria-live="polite">
+          <div class="result-top"><p class="section-kicker">Prediction</p><span class="confidence-pill" id="confidence-pill">Awaiting input</span></div>
+          <div id="empty-state" class="empty-state"><p class="empty-index">01 / 01</p><h2>Your result will appear here.</h2><p>Complete the listing details, then generate a prediction.</p></div>
+          <div id="result-state" hidden>
+            <p class="result-label">Most likely room type</p><h2 id="room-type"></h2>
+            <p id="result-copy" class="result-copy"></p>
+            <div class="confidence-header"><span>Model confidence</span><strong id="confidence-value">0%</strong></div>
+            <div id="probability-list" class="probability-list"></div>
+            <div class="result-footnote">Prediction based on listing details, location, price, availability, and review activity.</div>
+          </div>
+        </aside>
+      </section>
+    </main>
+    <footer><span>LISTING LENS / NYC</span><span>Room classification, thoughtfully simplified.</span></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
