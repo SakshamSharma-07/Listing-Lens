@@ -7,6 +7,8 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.95%2B-009485.svg)](https://fastapi.tiangolo.com/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-1.0%2B-F7931E.svg)](https://scikit-learn.org/)
 
+Try the application here: https://listing-lens-1.onrender.com/
+
 ---
 
 ## 📋 Table of Contents
@@ -35,8 +37,6 @@ The system analyzes comprehensive property features—including geographic coord
 - **Entire home/apartment** - Full properties available for exclusive rental
 - **Private room** - Single rooms with shared common areas
 - **Shared room** - Rooms shared among multiple guests
-
-- Try the application here: https://listing-lens-1.onrender.com/
 
 - ## Listing Lens
 
