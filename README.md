@@ -36,6 +36,8 @@ The system analyzes comprehensive property features—including geographic coord
 - **Private room** - Single rooms with shared common areas
 - **Shared room** - Rooms shared among multiple guests
 
+- Try the application here: https://listing-lens-1.onrender.com/
+
 - ## Listing Lens
 
 [![Live Demo](https://img.shields.io/website?url=https://listing-lens-1.onrender.com&label=Live%20Demo)](https://listing-lens-1.onrender.com/)
