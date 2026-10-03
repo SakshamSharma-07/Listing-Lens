@@ -36,6 +36,18 @@ The system analyzes comprehensive property features—including geographic coord
 - **Private room** - Single rooms with shared common areas
 - **Shared room** - Rooms shared among multiple guests
 
+- ## Listing Lens
+
+[![Live Demo](https://img.shields.io/website?url=https://listing-lens-1.onrender.com&label=Live%20Demo)](https://listing-lens-1.onrender.com/)
+
+### Repository language composition
+
+<div align="left">
+  <img alt="Jupyter Notebook 95.6%" src="https://img.shields.io/badge/Jupyter%20Notebook-95.6%25-DA5B0B?style=for-the-badge&logo=jupyter&logoColor=white" />
+  <img alt="HTML 3.7%" src="https://img.shields.io/badge/HTML-3.7%25-E34F26?style=for-the-badge&logo=html5&logoColor=white" />
+  <img alt="Other 0.7%" src="https://img.shields.io/badge/Other-0.7%25-808080?style=for-the-badge" />
+</div>
+
 ### Why Listing-Lens?
 
 Understanding room type classification is crucial for:
